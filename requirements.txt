@@ -1,0 +1,9 @@
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+requests>=2.31.0          # chamadas REST ao Azure Speech / Azure AI Language / webhook de alertas
+python-dotenv>=1.0.0      # lê as credenciais do arquivo .env desta pasta
+pillow>=10.0.0            # animação GIF do esqueleto
+streamlit>=1.30.0         # painel da equipe médica (app_dashboard.py)

@@ -1,0 +1,1043 @@
+{
+  "modo_servicos": {
+    "speech": "Azure",
+    "language": "Azure",
+    "webhook": false
+  },
+  "pacientes": {
+    "P001": {
+      "idade": 58,
+      "leito": "UTI-01",
+      "diagnostico": "Pós-operatório de colecistectomia"
+    },
+    "P002": {
+      "idade": 71,
+      "leito": "UTI-02",
+      "diagnostico": "Pneumonia comunitária"
+    },
+    "P003": {
+      "idade": 66,
+      "leito": "UTI-03",
+      "diagnostico": "AVC isquêmico em reabilitação"
+    }
+  },
+  "video": {
+    "P001": {
+      "resumo": {
+        "fonte": "synthetic-referencia",
+        "duracao_s": 29.9,
+        "fps": 15.0,
+        "repeticoes": 6,
+        "repeticoes_conformes": 6,
+        "interrompida_por_queda": false,
+        "eventos": 0,
+        "eventos_por_tipo": {},
+        "amplitude_media_esq": 92.8,
+        "amplitude_media_dir": 95.5
+      },
+      "eventos": [],
+      "repeticoes": [
+        {
+          "repeticao": 1,
+          "t": 2.47,
+          "joelho_esq_min": 93.5,
+          "joelho_dir_min": 95.3,
+          "assimetria": 1.4,
+          "tronco_max": 30.4,
+          "conforme": true
+        },
+        {
+          "repeticao": 2,
+          "t": 7.4,
+          "joelho_esq_min": 89.9,
+          "joelho_dir_min": 95.2,
+          "assimetria": 2.1,
+          "tronco_max": 30.6,
+          "conforme": true
+        },
+        {
+          "repeticao": 3,
+          "t": 12.53,
+          "joelho_esq_min": 93.5,
+          "joelho_dir_min": 94.9,
+          "assimetria": 1.1,
+          "tronco_max": 31.0,
+          "conforme": true
+        },
+        {
+          "repeticao": 4,
+          "t": 17.4,
+          "joelho_esq_min": 93.5,
+          "joelho_dir_min": 95.7,
+          "assimetria": 1.7,
+          "tronco_max": 30.6,
+          "conforme": true
+        },
+        {
+          "repeticao": 5,
+          "t": 22.47,
+          "joelho_esq_min": 92.8,
+          "joelho_dir_min": 97.1,
+          "assimetria": 2.5,
+          "tronco_max": 30.1,
+          "conforme": true
+        },
+        {
+          "repeticao": 6,
+          "t": 27.53,
+          "joelho_esq_min": 93.4,
+          "joelho_dir_min": 95.0,
+          "assimetria": 1.7,
+          "tronco_max": 30.2,
+          "conforme": true
+        }
+      ]
+    },
+    "P003": {
+      "resumo": {
+        "fonte": "synthetic-anomalo",
+        "duracao_s": 29.9,
+        "fps": 15.0,
+        "repeticoes": 5,
+        "repeticoes_conformes": 0,
+        "interrompida_por_queda": true,
+        "eventos": 19,
+        "eventos_por_tipo": {
+          "padrao_anomalo": 6,
+          "deficit_amplitude": 5,
+          "assimetria": 5,
+          "tremor": 1,
+          "sem_supervisao": 1,
+          "queda": 1
+        },
+        "amplitude_media_esq": 91.8,
+        "amplitude_media_dir": 130.5
+      },
+      "eventos": [
+        {
+          "t": 0.73,
+          "fim": 4.27,
+          "tipo": "padrao_anomalo",
+          "severidade": "INFO",
+          "descricao": "Movimento fora do padrão da sessão de referência (0.7s–4.3s)."
+        },
+        {
+          "t": 2.47,
+          "tipo": "deficit_amplitude",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 1: joelho direito não atingiu 110° (mín. 133.2°)."
+        },
+        {
+          "t": 2.47,
+          "tipo": "assimetria",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 1: assimetria de 40.7° entre joelhos (limite 12°) — possível hemiparesia/compensação."
+        },
+        {
+          "t": 5.73,
+          "fim": 9.27,
+          "tipo": "padrao_anomalo",
+          "severidade": "INFO",
+          "descricao": "Movimento fora do padrão da sessão de referência (5.7s–9.3s)."
+        },
+        {
+          "t": 7.53,
+          "tipo": "deficit_amplitude",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 2: joelho direito não atingiu 110° (mín. 132.8°)."
+        },
+        {
+          "t": 7.53,
+          "tipo": "assimetria",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 2: assimetria de 39.6° entre joelhos (limite 12°) — possível hemiparesia/compensação."
+        },
+        {
+          "t": 10.6,
+          "fim": 14.27,
+          "tipo": "padrao_anomalo",
+          "severidade": "INFO",
+          "descricao": "Movimento fora do padrão da sessão de referência (10.6s–14.3s)."
+        },
+        {
+          "t": 12.4,
+          "tipo": "deficit_amplitude",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 3: joelho direito não atingiu 110° (mín. 132.7°)."
+        },
+        {
+          "t": 12.4,
+          "tipo": "assimetria",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 3: assimetria de 38.9° entre joelhos (limite 12°) — possível hemiparesia/compensação."
+        },
+        {
+          "t": 14.47,
+          "fim": 29.93,
+          "tipo": "tremor",
+          "severidade": "MODERADO",
+          "descricao": "Tremor de ~6.1 Hz entre 14.5s e 29.9s (RMS máx. 15.0°)."
+        },
+        {
+          "t": 15.73,
+          "fim": 19.33,
+          "tipo": "padrao_anomalo",
+          "severidade": "INFO",
+          "descricao": "Movimento fora do padrão da sessão de referência (15.7s–19.3s)."
+        },
+        {
+          "t": 17.67,
+          "tipo": "deficit_amplitude",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 4: joelho direito não atingiu 110° (mín. 127.0°)."
+        },
+        {
+          "t": 17.67,
+          "tipo": "assimetria",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 4: assimetria de 37.3° entre joelhos (limite 12°) — possível hemiparesia/compensação."
+        },
+        {
+          "t": 18.0,
+          "fim": 29.93,
+          "tipo": "sem_supervisao",
+          "severidade": "ALTO",
+          "descricao": "Paciente sem fisioterapeuta no campo de visão de 18.0s a 29.9s."
+        },
+        {
+          "t": 20.67,
+          "fim": 24.27,
+          "tipo": "padrao_anomalo",
+          "severidade": "INFO",
+          "descricao": "Movimento fora do padrão da sessão de referência (20.7s–24.3s)."
+        },
+        {
+          "t": 22.67,
+          "tipo": "deficit_amplitude",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 5: joelho direito não atingiu 110° (mín. 126.6°)."
+        },
+        {
+          "t": 22.67,
+          "tipo": "assimetria",
+          "severidade": "MODERADO",
+          "descricao": "Rep. 5: assimetria de 39.3° entre joelhos (limite 12°) — possível hemiparesia/compensação."
+        },
+        {
+          "t": 25.0,
+          "fim": 29.93,
+          "tipo": "padrao_anomalo",
+          "severidade": "INFO",
+          "descricao": "Movimento fora do padrão da sessão de referência (25.0s–29.9s)."
+        },
+        {
+          "t": 25.8,
+          "tipo": "queda",
+          "severidade": "CRITICO",
+          "descricao": "Perda de equilíbrio/queda aos 25.8s (quadril a 0.19 da altura, velocidade -0.63/s)."
+        }
+      ],
+      "repeticoes": [
+        {
+          "repeticao": 1,
+          "t": 2.47,
+          "joelho_esq_min": 92.7,
+          "joelho_dir_min": 133.2,
+          "assimetria": 40.7,
+          "tronco_max": 30.7,
+          "conforme": false
+        },
+        {
+          "repeticao": 2,
+          "t": 7.53,
+          "joelho_esq_min": 93.6,
+          "joelho_dir_min": 132.8,
+          "assimetria": 39.6,
+          "tronco_max": 30.9,
+          "conforme": false
+        },
+        {
+          "repeticao": 3,
+          "t": 12.4,
+          "joelho_esq_min": 94.9,
+          "joelho_dir_min": 132.7,
+          "assimetria": 38.9,
+          "tronco_max": 30.8,
+          "conforme": false
+        },
+        {
+          "repeticao": 4,
+          "t": 17.67,
+          "joelho_esq_min": 90.8,
+          "joelho_dir_min": 127.0,
+          "assimetria": 37.3,
+          "tronco_max": 30.5,
+          "conforme": false
+        },
+        {
+          "repeticao": 5,
+          "t": 22.67,
+          "joelho_esq_min": 87.1,
+          "joelho_dir_min": 126.6,
+          "assimetria": 39.3,
+          "tronco_max": 31.0,
+          "conforme": false
+        }
+      ]
+    }
+  },
+  "audio": {
+    "P001": {
+      "arquivo": "data/consulta_P001.wav",
+      "perfil_simulado": "normal",
+      "features": {
+        "duracao_s": 11.21,
+        "f0_medio_hz": 206.1,
+        "f0_cv": 0.223,
+        "jitter_pct": 1.14,
+        "shimmer_pct": 6.44,
+        "hnr_db": 15.9,
+        "taxa_silabas_s": 3.86,
+        "proporcao_pausas": 0.214,
+        "pausas_por_min": 32.1,
+        "pausa_media_s": 0.4,
+        "irregularidade_ritmo": 0.4,
+        "inclinacao_intensidade_db_s": -0.11,
+        "frase_media_s": 1.26,
+        "inspiracoes_audiveis": 0
+      },
+      "indicadores": {
+        "fadiga": 0.0,
+        "disartria": 0.1,
+        "dificuldade_respiratoria": 0.08
+      },
+      "transcricao": {
+        "provedor": "offline (transcrição de referência .txt)",
+        "status": "Success",
+        "texto": "Bom dia, doutor. Estou me sentindo bem melhor hoje. A dor da cirurgia diminuiu bastante, consegui dormir a noite toda e já estou caminhando no corredor. Estou animada para ir para casa.",
+        "confianca": null,
+        "observacao": "Fallback: Azure Speech to Text retornou status 'Success'."
+      },
+      "texto": {
+        "provedor": "Azure AI Language (Text Analytics)",
+        "sentimento": "misto",
+        "confianca": {
+          "positivo": 0.63,
+          "negativo": 0.26
+        },
+        "termos_criticos": [],
+        "frases_chave": [
+          "Bom dia",
+          "doutor",
+          "dor",
+          "cirurgia",
+          "casa"
+        ],
+        "entidades_saude": [
+          {
+            "texto": "doutor",
+            "categoria": "HealthcareProfession",
+            "confianca": 0.79,
+            "negado": false
+          },
+          {
+            "texto": "sentindo bem melhor",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.89,
+            "negado": false
+          },
+          {
+            "texto": "hoje",
+            "categoria": "Time",
+            "confianca": 0.97,
+            "negado": false
+          },
+          {
+            "texto": "dor da",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.77,
+            "negado": false
+          },
+          {
+            "texto": "cirurgia",
+            "categoria": "TreatmentName",
+            "confianca": 0.97,
+            "negado": false
+          },
+          {
+            "texto": "diminuiu bastante",
+            "categoria": "Course",
+            "confianca": 0.95,
+            "negado": false
+          },
+          {
+            "texto": "dormir a",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.63,
+            "negado": false
+          },
+          {
+            "texto": "noite toda",
+            "categoria": "Time",
+            "confianca": 0.65,
+            "negado": false
+          }
+        ],
+        "erros_azure": [],
+        "frases": [
+          {
+            "texto": "Bom dia, doutor. ",
+            "sentimento": "positivo"
+          },
+          {
+            "texto": "Estou me sentindo bem melhor hoje. ",
+            "sentimento": "positivo"
+          },
+          {
+            "texto": "A dor da cirurgia diminuiu bastante, consegui dormir a noite toda e já estou caminhando no corredor. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "Estou animada para ir para casa.",
+            "sentimento": "positivo"
+          }
+        ]
+      }
+    },
+    "P002": {
+      "arquivo": "data/consulta_azure_tts.wav",
+      "perfil_simulado": "real",
+      "features": {
+        "duracao_s": 15.0,
+        "f0_medio_hz": 239.2,
+        "f0_cv": 0.235,
+        "jitter_pct": 1.6,
+        "shimmer_pct": 4.85,
+        "hnr_db": 14.5,
+        "taxa_silabas_s": 3.23,
+        "proporcao_pausas": 0.091,
+        "pausas_por_min": 12.0,
+        "pausa_media_s": 0.45,
+        "irregularidade_ritmo": 0.566,
+        "inclinacao_intensidade_db_s": -0.21,
+        "frase_media_s": 3.41,
+        "inspiracoes_audiveis": 3
+      },
+      "indicadores": {
+        "fadiga": 0.15,
+        "disartria": 0.22,
+        "dificuldade_respiratoria": 0.23
+      },
+      "transcricao": {
+        "provedor": "Azure Speech to Text",
+        "status": "Success",
+        "texto": "Doutor, eu estou com muita falta de ar. Piorou desde ontem à noite. Tenho febre e calafrios. A tosse está com catarro amarelado e sinto uma dor no peito quando respiro o fundo. Estou muito preocupado. Não consigo nem terminar uma frase.",
+        "confianca": 0.8781501,
+        "duracao_s": 15.24
+      },
+      "texto": {
+        "provedor": "Azure AI Language (Text Analytics)",
+        "sentimento": "negativo",
+        "confianca": {
+          "positivo": 0.01,
+          "negativo": 0.86
+        },
+        "termos_criticos": [
+          {
+            "termo": "falta de ar",
+            "dominio": "respiratorio",
+            "negado": false
+          },
+          {
+            "termo": "tosse",
+            "dominio": "respiratorio",
+            "negado": false
+          },
+          {
+            "termo": "catarro",
+            "dominio": "respiratorio",
+            "negado": false
+          },
+          {
+            "termo": "nao consigo nem terminar uma frase",
+            "dominio": "respiratorio",
+            "negado": false
+          },
+          {
+            "termo": "dor no peito",
+            "dominio": "cardiovascular",
+            "negado": false
+          },
+          {
+            "termo": "febre",
+            "dominio": "infeccioso",
+            "negado": false
+          },
+          {
+            "termo": "calafrios",
+            "dominio": "infeccioso",
+            "negado": false
+          },
+          {
+            "termo": "preocupado",
+            "dominio": "saude_mental",
+            "negado": false
+          }
+        ],
+        "frases_chave": [
+          "muita falta",
+          "Doutor",
+          "ar",
+          "ontem",
+          "noite",
+          "febre",
+          "calafrios",
+          "tosse",
+          "dor",
+          "peito",
+          "fundo",
+          "frase"
+        ],
+        "entidades_saude": [
+          {
+            "texto": "muita",
+            "categoria": "ConditionQualifier",
+            "confianca": 0.74,
+            "negado": false
+          },
+          {
+            "texto": "falta de ar",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "Piorou",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.98,
+            "negado": false
+          },
+          {
+            "texto": "ontem à noite",
+            "categoria": "Time",
+            "confianca": 0.97,
+            "negado": false
+          },
+          {
+            "texto": "febre",
+            "categoria": "SymptomOrSign",
+            "confianca": 1.0,
+            "negado": false
+          },
+          {
+            "texto": "calafrios",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "tosse",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.77,
+            "negado": false
+          },
+          {
+            "texto": "catarro amarelado",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.7,
+            "negado": false
+          },
+          {
+            "texto": "dor no",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.85,
+            "negado": false
+          },
+          {
+            "texto": "peito",
+            "categoria": "BodyStructure",
+            "confianca": 0.65,
+            "negado": false
+          },
+          {
+            "texto": "preocupado",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.77,
+            "negado": false
+          },
+          {
+            "texto": "consigo nem",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.86,
+            "negado": true
+          },
+          {
+            "texto": "terminar uma frase",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.96,
+            "negado": false
+          }
+        ],
+        "erros_azure": [],
+        "frases": [
+          {
+            "texto": "Doutor, eu estou com muita falta de ar. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "Piorou desde ontem à noite. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "Tenho febre e calafrios. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "A tosse está com catarro amarelado e sinto uma dor no peito quando respiro o fundo. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "Estou muito preocupado. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "Não consigo nem terminar uma frase.",
+            "sentimento": "negativo"
+          }
+        ]
+      }
+    },
+    "P003": {
+      "arquivo": "data/consulta_P003.wav",
+      "perfil_simulado": "disartria_fadiga",
+      "features": {
+        "duracao_s": 10.62,
+        "f0_medio_hz": 154.0,
+        "f0_cv": 0.324,
+        "jitter_pct": 3.17,
+        "shimmer_pct": 13.33,
+        "hnr_db": 11.4,
+        "taxa_silabas_s": 2.46,
+        "proporcao_pausas": 0.349,
+        "pausas_por_min": 28.2,
+        "pausa_media_s": 0.74,
+        "irregularidade_ritmo": 0.421,
+        "inclinacao_intensidade_db_s": -0.89,
+        "frase_media_s": 1.15,
+        "inspiracoes_audiveis": 0
+      },
+      "indicadores": {
+        "fadiga": 0.9,
+        "disartria": 0.92,
+        "dificuldade_respiratoria": 0.16
+      },
+      "transcricao": {
+        "provedor": "offline (transcrição de referência .txt)",
+        "status": "Success",
+        "texto": "Eu... estou muito cansada. A perna direita continua fraca e eu tenho tontura quando levanto. Ontem à noite eu caí perto da cama. A fala está enrolada e às vezes sinto formigamento no braço. Não sinto dor no peito.",
+        "confianca": null,
+        "observacao": "Fallback: Azure Speech to Text retornou status 'Success'."
+      },
+      "texto": {
+        "provedor": "Azure AI Language (Text Analytics)",
+        "sentimento": "misto",
+        "confianca": {
+          "positivo": 0.31,
+          "negativo": 0.68
+        },
+        "termos_criticos": [
+          {
+            "termo": "dor no peito",
+            "dominio": "cardiovascular",
+            "negado": true
+          },
+          {
+            "termo": "fala esta enrolada",
+            "dominio": "neurologico",
+            "negado": false
+          },
+          {
+            "termo": "formigamento",
+            "dominio": "neurologico",
+            "negado": false
+          },
+          {
+            "termo": "fraca",
+            "dominio": "neurologico",
+            "negado": false
+          },
+          {
+            "termo": "tontura",
+            "dominio": "neurologico",
+            "negado": false
+          },
+          {
+            "termo": "cai",
+            "dominio": "queda",
+            "negado": false
+          },
+          {
+            "termo": "cansada",
+            "dominio": "fadiga",
+            "negado": false
+          }
+        ],
+        "frases_chave": [
+          "perna direita",
+          "braço",
+          "tontura",
+          "cama",
+          "fala",
+          "formigamento",
+          "dor",
+          "peito"
+        ],
+        "entidades_saude": [
+          {
+            "texto": "muito",
+            "categoria": "ConditionQualifier",
+            "confianca": 0.83,
+            "negado": false
+          },
+          {
+            "texto": "cansada",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "perna",
+            "categoria": "BodyStructure",
+            "confianca": 0.82,
+            "negado": false
+          },
+          {
+            "texto": "direita",
+            "categoria": "Direction",
+            "confianca": 0.85,
+            "negado": false
+          },
+          {
+            "texto": "continua",
+            "categoria": "Course",
+            "confianca": 0.72,
+            "negado": false
+          },
+          {
+            "texto": "fraca",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "tontura",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "Ontem à noite",
+            "categoria": "Time",
+            "confianca": 0.91,
+            "negado": false
+          },
+          {
+            "texto": "fala está enrolada",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "formigamento",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "braço",
+            "categoria": "BodyStructure",
+            "confianca": 0.99,
+            "negado": false
+          },
+          {
+            "texto": "dor no peito",
+            "categoria": "SymptomOrSign",
+            "confianca": 0.75,
+            "negado": true
+          }
+        ],
+        "erros_azure": [],
+        "frases": [
+          {
+            "texto": "Eu... ",
+            "sentimento": "neutro"
+          },
+          {
+            "texto": "estou muito cansada. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "A perna direita continua fraca e eu tenho tontura quando levanto. ",
+            "sentimento": "negativo"
+          },
+          {
+            "texto": "Ontem à noite eu caí perto da cama. ",
+            "sentimento": "neutro"
+          },
+          {
+            "texto": "A fala está enrolada e às vezes sinto formigamento no braço. ",
+            "sentimento": "neutro"
+          },
+          {
+            "texto": "Não sinto dor no peito.",
+            "sentimento": "positivo"
+          }
+        ]
+      }
+    }
+  },
+  "fusao": [
+    {
+      "patient_id": "P001",
+      "escores_modalidade": {
+        "sinais_vitais": 0.0,
+        "prescricao": 0.0,
+        "audio": 0.0,
+        "video": 0.0,
+        "movimentacao": 0.0
+      },
+      "escore_base": 0.0,
+      "bonus_corroboracao": 0.0,
+      "risco": 0.0,
+      "nivel": "BAIXO",
+      "dominios_convergentes": {},
+      "principais_alertas": [],
+      "n_alertas": 1
+    },
+    {
+      "patient_id": "P002",
+      "escores_modalidade": {
+        "sinais_vitais": 1.0,
+        "prescricao": 1.0,
+        "audio": 0.7,
+        "video": 0.0,
+        "movimentacao": 0.0
+      },
+      "escore_base": 0.856,
+      "bonus_corroboracao": 0.3,
+      "risco": 1.0,
+      "nivel": "CRITICO",
+      "dominios_convergentes": {
+        "cardiovascular": [
+          "audio",
+          "sinais_vitais"
+        ],
+        "infeccioso": [
+          "audio",
+          "prescricao",
+          "sinais_vitais"
+        ],
+        "respiratorio": [
+          "audio",
+          "sinais_vitais"
+        ]
+      },
+      "principais_alertas": [
+        "[CRITICO] sinais_vitais: NEWS2 ≥ 7 — resposta de emergência",
+        "[CRITICO] prescricao: Dose acima do máximo: dipirona",
+        "[ALTO] audio: Termos críticos na consulta",
+        "[ALTO] sinais_vitais: NEWS2 ≥ 5 — resposta urgente",
+        "[ALTO] prescricao: Suspensão abrupta de antibiotico: ceftriaxona"
+      ],
+      "n_alertas": 16
+    },
+    {
+      "patient_id": "P003",
+      "escores_modalidade": {
+        "sinais_vitais": 0.9,
+        "prescricao": 0.9,
+        "audio": 0.8,
+        "video": 1.0,
+        "movimentacao": 1.0
+      },
+      "escore_base": 0.964,
+      "bonus_corroboracao": 0.2,
+      "risco": 1.0,
+      "nivel": "CRITICO",
+      "dominios_convergentes": {
+        "neurologico": [
+          "audio",
+          "movimentacao",
+          "video"
+        ],
+        "queda": [
+          "audio",
+          "movimentacao",
+          "video"
+        ]
+      },
+      "principais_alertas": [
+        "[CRITICO] video: Fisioterapia: queda",
+        "[CRITICO] movimentacao: Possível queda detectada",
+        "[ALTO] video: Fisioterapia: sem supervisao",
+        "[ALTO] audio: Alteração vocal compatível com fadiga",
+        "[ALTO] audio: Alteração vocal compatível com disartria"
+      ],
+      "n_alertas": 26
+    }
+  ],
+  "alertas_resumo": {
+    "total": 47,
+    "suprimidos_por_duplicidade": 11,
+    "por_severidade": {
+      "ALTO": 18,
+      "MODERADO": 18,
+      "CRITICO": 6,
+      "INFO": 5
+    },
+    "por_paciente": {
+      "P003": 28,
+      "P002": 18,
+      "P001": 1
+    }
+  },
+  "avaliacao": [
+    {
+      "verificacao": "P001 artefato de oxímetro ignorado",
+      "ok": true,
+      "resultado": "nenhum alerta"
+    },
+    {
+      "verificacao": "P002 deterioracao_sepse (02/11 06:00) detectado",
+      "ok": true,
+      "resultado": "1º alerta 120 min após o início [MODERADO] 'Padrão multivariado atípico (Isolation Forest)'; 1º ALTO/CRÍTICO após 245 min"
+    },
+    {
+      "verificacao": "P003 crise_hipertensiva (01/11 14:00) detectado",
+      "ok": true,
+      "resultado": "1º alerta 10 min após o início [ALTO] 'Crise hipertensiva (PAS ≥ 180 mmHg)'; 1º ALTO/CRÍTICO após 10 min"
+    },
+    {
+      "verificacao": "P003 crise_hipertensiva (02/11 14:30) detectado",
+      "ok": true,
+      "resultado": "1º alerta 10 min após o início [ALTO] 'Crise hipertensiva (PAS ≥ 180 mmHg)'; 1º ALTO/CRÍTICO após 10 min"
+    },
+    {
+      "verificacao": "P001 (controle) sem alertas ALTO/CRÍTICO",
+      "ok": true,
+      "resultado": "0 alerta(s)"
+    },
+    {
+      "verificacao": "Vídeo P003: queda, assimetria, tremor e falta de supervisão",
+      "ok": true,
+      "resultado": "detectados ['assimetria', 'deficit_amplitude', 'padrao_anomalo', 'queda', 'sem_supervisao', 'tremor']"
+    },
+    {
+      "verificacao": "Vídeo P001 (execução correta) sem desvios",
+      "ok": true,
+      "resultado": "eventos nenhum"
+    },
+    {
+      "verificacao": "Áudio P001 (perfil normal)",
+      "ok": true,
+      "resultado": "indicadores {'fadiga': 0.0, 'disartria': 0.1, 'dificuldade_respiratoria': 0.08}"
+    },
+    {
+      "verificacao": "Áudio P003 (perfil disartria_fadiga)",
+      "ok": true,
+      "resultado": "indicadores {'fadiga': 0.9, 'disartria': 0.92, 'dificuldade_respiratoria': 0.16}"
+    }
+  ],
+  "artefatos_descartados": [
+    {
+      "patient_id": "P001",
+      "sinal": "heart_rate",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P001",
+      "sinal": "spo2",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "spo2",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "spo2",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "resp_rate",
+      "amostras": 2
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "resp_rate",
+      "amostras": 2
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "resp_rate",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "resp_rate",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "heart_rate",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 1
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 2
+    },
+    {
+      "patient_id": "P002",
+      "sinal": "systolic_bp",
+      "amostras": 2
+    }
+  ]
+}
