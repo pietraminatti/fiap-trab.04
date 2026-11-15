@@ -10,7 +10,6 @@ Todos os comandos abaixo são executados a partir da raiz do repositório.
 |---|---|
 | Código | [monitoramento/](monitoramento) (pacote), [run_multimodal_monitoring.py](run_multimodal_monitoring.py), [app_dashboard.py](app_dashboard.py) |
 | Relatório técnico | [relatorio_tecnico_fase4.md](relatorio_tecnico_fase4.md) |
-| Vídeo de demonstração | _<inserir link do YouTube/Vimeo>_ |
 
 ---
 
