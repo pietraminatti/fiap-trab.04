@@ -12,6 +12,8 @@ __pycache__/
 
 data/
 reports/monitoramento.log
+reports/alertas.csv
+reports/sinais_vitais_scores.csv
 reports/figures/video_anotado.mp4
 *.pt
 
