@@ -1,0 +1,151 @@
+{
+  "resumo": {
+    "fonte": "yolov8:agachamento.mp4",
+    "duracao_s": 15.8,
+    "fps": 25.0,
+    "repeticoes": 8,
+    "repeticoes_conformes": 0,
+    "interrompida_por_queda": false,
+    "eventos": 9,
+    "eventos_por_tipo": {
+      "compensacao_tronco": 8,
+      "sem_supervisao": 1
+    },
+    "amplitude_media_esq": 61.3,
+    "amplitude_media_dir": 67.4
+  },
+  "repeticoes": [
+    {
+      "repeticao": 1,
+      "t": 0.92,
+      "joelho_esq_min": 58.6,
+      "joelho_dir_min": 65.6,
+      "assimetria": 7.5,
+      "tronco_max": 44.3,
+      "conforme": false
+    },
+    {
+      "repeticao": 2,
+      "t": 2.84,
+      "joelho_esq_min": 62.4,
+      "joelho_dir_min": 67.6,
+      "assimetria": 6.2,
+      "tronco_max": 43.9,
+      "conforme": false
+    },
+    {
+      "repeticao": 3,
+      "t": 4.8,
+      "joelho_esq_min": 61.6,
+      "joelho_dir_min": 69.7,
+      "assimetria": 7.3,
+      "tronco_max": 44.7,
+      "conforme": false
+    },
+    {
+      "repeticao": 4,
+      "t": 6.8,
+      "joelho_esq_min": 61.3,
+      "joelho_dir_min": 68.0,
+      "assimetria": 6.0,
+      "tronco_max": 44.3,
+      "conforme": false
+    },
+    {
+      "repeticao": 5,
+      "t": 8.84,
+      "joelho_esq_min": 62.1,
+      "joelho_dir_min": 69.3,
+      "assimetria": 6.4,
+      "tronco_max": 45.1,
+      "conforme": false
+    },
+    {
+      "repeticao": 6,
+      "t": 10.8,
+      "joelho_esq_min": 60.5,
+      "joelho_dir_min": 64.6,
+      "assimetria": 5.2,
+      "tronco_max": 44.5,
+      "conforme": false
+    },
+    {
+      "repeticao": 7,
+      "t": 12.8,
+      "joelho_esq_min": 60.8,
+      "joelho_dir_min": 65.4,
+      "assimetria": 5.9,
+      "tronco_max": 45.4,
+      "conforme": false
+    },
+    {
+      "repeticao": 8,
+      "t": 14.76,
+      "joelho_esq_min": 63.1,
+      "joelho_dir_min": 68.8,
+      "assimetria": 5.2,
+      "tronco_max": 44.9,
+      "conforme": false
+    }
+  ],
+  "eventos": [
+    {
+      "t": 0.0,
+      "fim": 15.76,
+      "tipo": "sem_supervisao",
+      "severidade": "ALTO",
+      "descricao": "Paciente sem fisioterapeuta no campo de visão de 0.0s a 15.8s."
+    },
+    {
+      "t": 0.92,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 1: inclinação do tronco 44.3°."
+    },
+    {
+      "t": 2.84,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 2: inclinação do tronco 43.9°."
+    },
+    {
+      "t": 4.8,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 3: inclinação do tronco 44.7°."
+    },
+    {
+      "t": 6.8,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 4: inclinação do tronco 44.3°."
+    },
+    {
+      "t": 8.84,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 5: inclinação do tronco 45.1°."
+    },
+    {
+      "t": 10.8,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 6: inclinação do tronco 44.5°."
+    },
+    {
+      "t": 12.8,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 7: inclinação do tronco 45.4°."
+    },
+    {
+      "t": 14.76,
+      "tipo": "compensacao_tronco",
+      "severidade": "MODERADO",
+      "descricao": "Rep. 8: inclinação do tronco 44.9°."
+    }
+  ],
+  "objetos_detectados": [
+    "person"
+  ]
+}

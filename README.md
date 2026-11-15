@@ -89,6 +89,7 @@ O detalhamento dos modelos e dos resultados está em [relatorio_tecnico_fase4.md
 | Crises hipertensivas do P003 | detectadas em 10 min |
 | Artefato de oxímetro do P001 | ignorado (filtro de persistência) |
 | Vídeo do P003 | queda, assimetria, tremor de ~6 Hz e ausência do fisioterapeuta detectados |
+| Vídeo real (YOLOv8) | 8 agachamentos identificados; compensação de tronco (44–45°) e falta de supervisão detectadas; sem falsos positivos de queda/tremor |
 | Voz | dispneia (P002) e disartria + fadiga (P003) identificadas; P001 normal |
 | Paciente controle P001 | 0 alertas ALTO/CRÍTICO · risco fundido **BAIXO** |
 
@@ -96,13 +97,14 @@ O detalhamento dos modelos e dos resultados está em [relatorio_tecnico_fase4.md
 
 ```bash
 python run_multimodal_monitoring.py --offline                                  # ignora Azure mesmo com chaves
-python run_multimodal_monitoring.py --video sessao.mp4 --video-patient P003    # vídeo real (YOLOv8)*
+python scripts/analisar_video_real.py agachamento.mp4                          # vídeo real (YOLOv8) -> reports/video_real/*
+python run_multimodal_monitoring.py --video sessao.mp4 --video-patient P003    # vídeo real no lugar da sessão simulada*
 python run_multimodal_monitoring.py --openpose pasta_json/                     # saída do OpenPose (BODY_25)
 python run_multimodal_monitoring.py --audio consulta.wav --audio-patient P002  # gravação real
 python run_multimodal_monitoring.py --vitals-csv bidmc_01_Numerics.csv         # PhysioNet BIDMC
 python run_multimodal_monitoring.py --realtime 0.02                            # replay "ao vivo" dos vitais
 ```
-\* Vídeo real requer `pip install -r requirements-video.txt` (ultralytics + PyTorch, ~2 GB). Os pesos YOLOv8 são baixados automaticamente.
+\* Vídeo real requer `pip install -r requirements-video.txt` (ultralytics + PyTorch, ~2 GB; para instalar só a versão CPU do PyTorch, rode antes `pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu`). Os pesos YOLOv8 são baixados automaticamente. O exemplo em `reports/video_real/` usa o vídeo gratuito *Woman Doing a Squat Exercise* (olia danilevich, Pexels).
 
 ## 🔁 CI/CD
 
@@ -136,6 +138,7 @@ Para o job `azure` rodar no GitHub, cadastre em *Settings → Secrets and variab
 | [monitoramento/fusion.py](monitoramento/fusion.py) | Fusão multimodal e alerta consolidado. |
 | [monitoramento/reporting.py](monitoramento/reporting.py) | Figuras, GIF do esqueleto e relatórios Markdown. |
 | [scripts/azure_smoke_test.py](scripts/azure_smoke_test.py) | Testa as credenciais Azure (TTS → STT → Language). |
+| [scripts/analisar_video_real.py](scripts/analisar_video_real.py) | Processa um vídeo real com YOLOv8: vídeo anotado, cinemática e relatório de desvios. |
 | [tests/test_fase4.py](tests/test_fase4.py) | Testes automatizados da Fase 4. |
 
 ## 🌳 Estrutura do repositório
@@ -147,7 +150,7 @@ fiap-trab.04/
 ├── run_multimodal_monitoring.py  # orquestrador
 ├── app_dashboard.py              # painel da equipe médica
 ├── monitoramento/                # pacote com os módulos de cada modalidade
-├── scripts/azure_smoke_test.py   # teste das credenciais Azure
+├── scripts/                      # teste das credenciais Azure e análise de vídeo real (YOLOv8)
 ├── tests/                        # testes automatizados
 ├── requirements.txt              # dependências
 ├── requirements-dev.txt          # + pytest e ruff

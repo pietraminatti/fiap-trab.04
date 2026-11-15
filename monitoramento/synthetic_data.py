@@ -81,11 +81,11 @@ def generate_vitals(random_state: int = 42) -> tuple[pd.DataFrame, list[dict]]:
                           "inicio": str(START + pd.Timedelta(hours=20)),
                           "fim": str(START + pd.Timedelta(hours=20, minutes=5))})
 
-        df = pd.DataFrame(data)
+        df = pd.DataFrame(data).round(1)
         df["spo2"] = df["spo2"].clip(upper=100)
         df.insert(0, "timestamp", START + pd.to_timedelta(np.arange(n) * SAMPLE_MINUTES, unit="min"))
         df.insert(1, "patient_id", pid)
-        frames.append(df.round(1))
+        frames.append(df)
 
     return pd.concat(frames, ignore_index=True), truth
 

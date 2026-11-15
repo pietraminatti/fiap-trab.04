@@ -13,7 +13,7 @@ sistema passa a **monitorar continuamente** o paciente com dados de naturezas di
 
 | Requisito do enunciado | Onde está |
 |---|---|
-| Vídeo: processar sessões de fisioterapia, detectar movimentos fora do padrão (OpenPose / YOLOv8) e gerar relatório de desvios | [video_analysis.py](monitoramento/video_analysis.py), relatório automático em `reports/relatorio_video_<paciente>.md` |
+| Vídeo: processar sessões de fisioterapia, detectar movimentos fora do padrão (OpenPose / YOLOv8) e gerar relatório de desvios | [video_analysis.py](monitoramento/video_analysis.py), relatório automático em `reports/relatorio_video_<paciente>.md`; vídeo real processado com YOLOv8 por [scripts/analisar_video_real.py](scripts/analisar_video_real.py) → `reports/video_real/` |
 | Áudio: detectar alterações vocais (cansaço, dificuldade respiratória), transcrever com **Azure Speech to Text** e analisar termos críticos/sentimento com **Azure Text Analytics** | [audio_analysis.py](monitoramento/audio_analysis.py), [azure_services.py](monitoramento/azure_services.py) |
 | Anomalias em sinais vitais, prescrições e movimentação do paciente | [anomaly_detection.py](monitoramento/anomaly_detection.py) |
 | Alertas automáticos para a equipe médica | [alerts.py](monitoramento/alerts.py), [app_dashboard.py](app_dashboard.py), webhook Teams/Slack |
@@ -81,7 +81,7 @@ que permite medir o sistema. Todos os módulos também aceitam **dados reais**:
 | Modalidade | Sintético (padrão) | Dado real aceito |
 |---|---|---|
 | Sinais vitais | 48 h, 1 amostra/5 min, ruído AR(1) + ritmo circadiano | CSV do projeto ou `bidmc_XX_Numerics.csv` do **PhysioNet BIDMC** (`--vitals-csv`) |
-| Vídeo | keypoints COCO-17 de agachamentos (15 fps, 30 s) | vídeo `.mp4` via **YOLOv8** (`--video`) ou JSON do **OpenPose** (`--openpose`) |
+| Vídeo | keypoints COCO-17 de agachamentos (15 fps, 30 s) | vídeo `.mp4` via **YOLOv8** (`scripts/analisar_video_real.py` ou `--video`) ou JSON do **OpenPose** (`--openpose`). Validado com um vídeo real de agachamento (seção 5.2) |
 | Áudio | voz sintetizada (fonte glotal + formantes) com jitter/shimmer/pausas controlados | qualquer WAV (`--audio`); `scripts/azure_smoke_test.py` gera uma consulta falada real com Azure TTS |
 | Prescrições / movimentação | tabelas geradas | mesmo formato em CSV |
 
@@ -110,7 +110,7 @@ que permite medir o sistema. Todos os módulos também aceitam **dados reais**:
 
 | Evento | Método | Critério |
 |---|---|---|
-| Repetições | vales do ângulo médio do joelho (`find_peaks`) | distância ≥ 2 s, proeminência 20° |
+| Repetições | vales do ângulo médio do joelho (`find_peaks`) | distância ≥ 1 s, proeminência 20° |
 | Déficit de amplitude | por repetição | joelho não chega a ≤ 110° |
 | Assimetria (hemiparesia/compensação) | por repetição | \|esq − dir\| > 12° |
 | Compensação de tronco | por repetição | inclinação > 40° |
@@ -186,8 +186,13 @@ ALTO/CRÍTICO e o **painel Streamlit**, onde o profissional registra ciência do
 
 ## 5. Resultados
 
-Execução padrão (`python run_multimodal_monitoring.py`, ~20 s, sem GPU). Todas as verificações
-contra o ground truth passaram, e o CI repete essa validação a cada push.
+Os números abaixo vêm de duas execuções, ambas sem GPU:
+
+* **Modo offline** (`python run_multimodal_monitoring.py --offline`, ~20 s): **10/10** verificações
+  contra o ground truth. É a execução que o CI repete a cada push.
+* **Modo Azure** (com as chaves, `--audio data/consulta_azure_tts.wav --audio-patient P002`): é a
+  execução cujas saídas estão em `reports/`. O áudio do P002 é trocado por uma consulta falada real
+  (Azure TTS), então a verificação do perfil vocal sintético do P002 não se aplica: **9/9**.
 
 ### 5.1 Avaliação contra as anomalias injetadas
 
@@ -201,7 +206,7 @@ contra o ground truth passaram, e o CI repete essa validação a cada push.
 | Vídeo P003: queda, assimetria, tremor, falta de supervisão | ✅ todos detectados (+ déficit de amplitude em 5/5 repetições avaliadas) |
 | Vídeo P001 (execução correta) | ✅ 6/6 repetições conformes, nenhum desvio |
 | Áudio P001 (normal) | ✅ fadiga 0,00 · disartria 0,10 · respiratório 0,08 |
-| Áudio P002 (dispneia) | ✅ respiratório **1,00** (9 inspirações audíveis, frases de 0,5 s) |
+| Áudio P002 (dispneia, modo offline) | ✅ respiratório **1,00** (9 inspirações audíveis, frases de 0,5 s) |
 | Áudio P003 (disartria + fadiga) | ✅ disartria **0,92** (shimmer 13 %, jitter 3,2 %) · fadiga **0,90** (2,5 sílabas/s) |
 
 A camada de **tendência + Isolation Forest** antecipou a deterioração séptica em **~2 h** em
@@ -211,7 +216,36 @@ detecção de anomalias em relação às regras clássicas.
 Os indicadores vocais foram testados com **10 sementes aleatórias por perfil**, e todas
 classificaram corretamente (também coberto em `tests/test_fase4.py`).
 
-### 5.2 Exemplos de anomalias detectadas
+### 5.2 Vídeo real processado com YOLOv8
+
+Para validar o caminho completo vídeo → YOLOv8 → análise, o sistema processou um vídeo real de
+agachamento filmado de lado (*Woman Doing a Squat Exercise*, de olia danilevich, banco de vídeos
+gratuitos **Pexels**, licença Pexels; 16 s, 1080×1920, 25 fps):
+
+```bash
+python scripts/analisar_video_real.py agachamento.mp4
+```
+
+* **YOLOv8n-pose** extraiu os 17 keypoints em todos os 395 quadros (~80 s em CPU) e o
+  **YOLOv8n** detectou 1 pessoa por quadro (classe `person`, confiança ≈ 0,9).
+* **8 repetições** identificadas, todas com flexão de joelho adequada (mínimo de ~60–70°,
+  alvo ≤ 110°) e assimetria baixa (5–8°, dentro do limite de 12°).
+* **Desvios encontrados:** inclinação do tronco de 44–45° em todas as repetições, acima do limite
+  de 40° do protocolo (**compensação de tronco**, MODERADO), e paciente sozinha em cena durante os
+  16 s (**sem supervisão**, ALTO).
+* Nenhum falso positivo de queda ou tremor: o ruído dos keypoints reais ficou abaixo do limiar de
+  tremor (RMS ≤ 1,3° contra 2°).
+
+Esse teste também revelou um ajuste: o detector de repetições exigia 2 s entre agachamentos
+(as sessões sintéticas têm ~5 s por repetição) e contava só 5 das 8 repetições reais. A distância
+mínima passou para 1 s.
+
+Saídas em `reports/video_real/`: vídeo anotado com o esqueleto (`video_anotado.mp4`), gráfico da
+cinemática, relatório automático de desvios e `resultado.json`.
+
+![vídeo real — cinemática](reports/video_real/cinematica.png)
+
+### 5.3 Exemplos de anomalias detectadas
 
 **Vídeo (P003)** — trecho do relatório automático `reports/relatorio_video_P003.md`:
 
@@ -240,12 +274,12 @@ dor no peito" é reconhecido como **negado** e não conta como sintoma.
 
 ![áudio](reports/figures/audio_indicadores.png)
 
-### 5.3 Fusão
+### 5.4 Fusão
 
 | Paciente | Vitais | Prescrição | Áudio | Vídeo | Movim. | Domínios convergentes | Risco |
 |---|---|---|---|---|---|---|---|
 | P001 | 0,00 | 0,00 | 0,00 | 0,00 | 0,00 | — | **0,00 BAIXO** |
-| P002 | 1,00 | 1,00 | 0,75 | — | 0,00 | respiratório, cardiovascular, infeccioso | **1,00 CRÍTICO** |
+| P002 | 1,00 | 1,00 | 0,70 | — | 0,00 | respiratório, cardiovascular, infeccioso | **1,00 CRÍTICO** |
 | P003 | 0,90 | 0,90 | 0,80 | 1,00 | 1,00 | neurológico (áudio + vídeo + movim.), queda (áudio + vídeo + movim.) | **1,00 CRÍTICO** |
 
 A corroboração mostra o valor da fusão: no P003, a **queda** aparece de forma independente no
@@ -256,8 +290,8 @@ inspiratórias) e pelo texto ("falta de ar").
 ![fusão](reports/figures/fusao_multimodal.png)
 ![linha do tempo](reports/figures/linha_do_tempo_alertas.png)
 
-### 5.4 Volume de alertas
-48 alertas no total para 3 pacientes × 48 h (6 CRÍTICO, 20 ALTO, 17 MODERADO, 5 INFO), com
+### 5.5 Volume de alertas
+47 alertas no total para 3 pacientes × 48 h na execução com Azure (6 CRÍTICO, 18 ALTO, 18 MODERADO, 5 INFO), com
 **11 repetições suprimidas** pela deduplicação. O paciente controle gerou 1 único alerta
 (INFO). Isso é relevante porque **fadiga de alarme** é um dos principais motivos de falha de
 sistemas de monitoramento.
@@ -285,6 +319,19 @@ As chamadas REST são cobertas por testes com *mocks* (`test_azure_speech_to_tex
 verificados mesmo no CI sem credenciais. Se os *secrets* existirem no GitHub, o job `azure` do
 CI executa o teste de integração real.
 
+**Resultado com as chaves reais** (plano gratuito F0, região East US), consulta do P002 gerada pelo
+Azure TTS: transcrição com **88 % de confiança**, sentimento **negativo (0,86)**, frases-chave
+("falta de ar", "febre", "calafrios", "tosse", "dor", "peito") e 13 entidades de saúde
+(febre, calafrios, tosse, catarro amarelado, falta de ar...).
+
+Dois ajustes vieram do teste com o serviço real:
+
+* O **Text Analytics for Health** não aceita o código `pt-BR`, só `pt`/`pt-PT`; o cliente envia `pt`.
+* O Azure marca como *SymptomOrSign* trechos como "estou me sentindo bem melhor" ou "a dor da
+  cirurgia diminuiu". Usá-los diretamente gerava alerta falso no paciente controle. Agora uma
+  entidade do Azure só vira termo crítico se cair em um domínio clínico do vocabulário crítico,
+  e a negação detectada pelo Azure prevalece sobre o léxico local.
+
 > Observação: o áudio sintético dos pacientes não é fala inteligível (serve para medir
 > biomarcadores com ground truth). Por isso, quando o Azure devolve transcrição vazia, o sistema
 > usa a transcrição de referência e registra o motivo (`observacao` no resultado). Para a
@@ -293,10 +340,10 @@ CI executa o teste de integração real.
 ---
 
 ## 7. Qualidade, CI/CD e reprodutibilidade
-* **22 testes automatizados** (pytest), cobrindo NEWS2, artefato vs. persistência, sepse,
+* **19 testes automatizados** (pytest), cobrindo NEWS2, artefato vs. persistência, sepse,
   regras de prescrição, movimentação, vídeo de referência vs. anômalo, perfis vocais, negação no
-  texto, clientes Azure (mock), deduplicação/escalada, fusão e o **pipeline de ponta a ponta**.
-  Também há testes rápidos das Fases 1 e 2.
+  texto, filtro das entidades do Azure, clientes Azure (mock), deduplicação/escalada, fusão e o
+  **pipeline de ponta a ponta**.
 * **GitHub Actions** ([ci.yml](.github/workflows/ci.yml)): lint (ruff) → testes em Python
   3.10/3.11/3.12 → execução do pipeline com validação do ground truth e publicação dos relatórios
   como artefato → integração Azure (opcional) → **CD**: imagem Docker publicada no GitHub
@@ -309,7 +356,14 @@ CI executa o teste de integração real.
   calibrar **por paciente** (comparar com consultas anteriores) e validar com dados clínicos
   rotulados (ex.: TORGO para disartria).
 * A análise de vídeo assume vista lateral e um exercício específico; outros protocolos exigem
-  novos critérios (o dicionário `PROTOCOL` é configurável).
+  novos critérios (o dicionário `PROTOCOL` é configurável). O caminho com YOLOv8 foi validado com
+  um vídeo real (seção 5.2), mas não com vídeos clínicos rotulados; o leitor de OpenPose segue o
+  formato oficial (`--write_json`, BODY_25), mas não foi executado com saída real do OpenPose.
+* A detecção de objetos do YOLOv8 é usada para contar pessoas (supervisão). Delimitar
+  "áreas críticas" (por exemplo, campo cirúrgico ou zona de risco de queda) exigiria treinar o
+  modelo com imagens rotuladas do ambiente.
+* Os dados clínicos são sintéticos (LGPD). A próxima etapa natural é validar com bases reais,
+  como o PhysioNet (o leitor do formato BIDMC já existe).
 * O NEWS2 assume paciente alerta e em ar ambiente; integrar nível de consciência e O₂
   suplementar do prontuário.
 * A base de fármacos/interações é ilustrativa. Em produção, integrar a uma base farmacológica

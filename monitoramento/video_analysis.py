@@ -195,7 +195,8 @@ def analyze_session(session: PoseSession, reference_model: PoseAnomalyModel | No
     fall_t = fall_segs[0][0] - 1.5 if fall_segs else np.inf  # inclui a fase de desequilíbrio
 
     # Repetições = vales do ângulo médio do joelho (as posteriores à queda não são avaliadas)
-    valleys, _ = signal.find_peaks(-signal.medfilt(mean_knee, 5), distance=int(2 * fps), prominence=20)
+    # distância mínima de 1 s entre repetições (agachamentos reais podem durar ~2 s cada)
+    valleys, _ = signal.find_peaks(-signal.medfilt(mean_knee, 5), distance=max(1, int(1.0 * fps)), prominence=20)
     valleys = [v for v in valleys if t[v] < fall_t]
     reps = []
     for n, v in enumerate(valleys, 1):

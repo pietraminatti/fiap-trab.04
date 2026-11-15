@@ -432,7 +432,7 @@
         "provedor": "Azure Speech to Text",
         "status": "Success",
         "texto": "Doutor, eu estou com muita falta de ar. Piorou desde ontem à noite. Tenho febre e calafrios. A tosse está com catarro amarelado e sinto uma dor no peito quando respiro o fundo. Estou muito preocupado. Não consigo nem terminar uma frase.",
-        "confianca": 0.8781501,
+        "confianca": 0.8812599,
         "duracao_s": 15.24
       },
       "texto": {
